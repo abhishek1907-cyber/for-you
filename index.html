@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For You ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s;
+            padding: 20px;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-size: 55px;
+            color: white;
+            text-shadow: 0 0 20px red;
+        }
+
+        p {
+            font-size: 26px;
+            color: white;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        img {
+            width: 260px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255,0,0,0.6);
+            margin-bottom: 20px;
+        }
+
+        .page1 { background: linear-gradient(to right, #ff758c, #ff7eb3); }
+        .page2 { background: linear-gradient(to right, #ff9a9e, #fad0c4); }
+        .page3 { background: linear-gradient(to right, #fbc2eb, #a6c1ee); }
+        .page4 { background: linear-gradient(to right, #ff8fab, #ffc2d1); }
+        .page5 { background: linear-gradient(to right, #ff6a88, #ff99ac); }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: red;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 10px white;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page 1 -->
+    <section class="page1 show">
+        <h1>I Love You ❤️</h1>
+        <button onclick="startLove()">Click Me 💖</button>
+    </section>
+
+    <!-- Page 2 -->
+    <section class="page2">
+        <p>
+            You are the best person I know 💖 <br><br>
+            I am blessed to have you in my life 🌸
+        </p>
+    </section>
+
+    <!-- Page 3 -->
+    <section class="page3">
+    <img src="photo1.heic">
+    <p>
+        I love you the most ❤️ <br><br>
+        You are the most beautiful 💖
+    </p>
+</section>
+
+    <!-- Page 4 -->
+    <section class="page4">
+        <p>
+            We’ve been together for more than 7 years ❤️ <br><br>
+            And still, you make me feel like it’s the first day 💖 <br><br>
+            That excitement never fades ✨ <br><br>
+            The urge to meet you never ends 🌸
+        </p>
+    </section>
+
+    <!-- Page 5 -->
+    <section class="page5">
+        <h1>Always & Forever ❤️</h1>
+    </section>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+
+        function startLove() {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: "smooth"
+            });
+        }
+
+        // Scroll animation
+        window.addEventListener("scroll", () => {
+            sections.forEach(sec => {
+                const top = sec.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) {
+                    sec.classList.add("show");
+                }
+            });
+        });
+
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.bottom = "0";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
